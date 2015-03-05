@@ -14,35 +14,35 @@ Pod::Spec.new do |s|
 
   # Top level attributes can't be specified by subspecs.
   s.header_mappings_dir = 'dist/include'
-  s.prepare_command = <<-CMD
-    scripts/download_distribution.sh
-  CMD
-  
+  s.source = {
+    http: 'https://github.com/google/j2objc/releases/download/#{s.version}/j2objc-#{s.version}.zip',
+    sha1: 'e4688c50adc169599b01789b3e6ee9d8c750092a'
+  }
+
   s.subspec 'lib' do |lib|
     lib.frameworks = 'Security'
     lib.osx.frameworks = 'ExceptionHandling'
-    lib.xcconfig = { 'LIBRARY_SEARCH_PATHS' => '"$(PODS_ROOT)/J2ObjC/dist/lib"', \
-      'HEADER_SEARCH_PATHS' => '"${PODS_ROOT}/J2ObjC/dist/include"' }
+    lib.xcconfig = { 'HEADER_SEARCH_PATHS' => '"${PODS_ROOT}/J2ObjC/dist/include"' }
 
     lib.subspec 'jre' do |jre|
       jre.preserve_paths = 'dist'
-      jre.libraries = 'jre_emul', 'icucore', 'z'
-      # jre.xcconfig = { 'OTHER_LDFLAGS' => '-force_load ${PODS_ROOT}/J2ObjC/dist/lib/libjre_emul.a' }
+      jre.libraries = 'icucore', 'z'
+      jre.vendored_libraries = 'dist/#{lib.base_name}/libjre_emul.a'
     end
 
     lib.subspec 'jsr305' do |jsr305|
       jsr305.dependency 'J2ObjC/lib/jre'
-      jsr305.libraries = 'jsr305'
+      jsr305.vendored_libraries = 'dist/#{lib.base_name}/lib#{jsr305.base_name}.a'
     end
 
     lib.subspec 'junit' do |junit|
       junit.dependency 'J2ObjC/lib/jre'
-      junit.libraries = 'j2objc_main', 'junit', 'mockito'
+      junit.vendored_libraries = 'dist/#{lib.base_name}/lib#{junit.base_name}.a', 'dist/#{lib.base_name}/libj2objc_main.a', 'dist/#{lib.base_name}/libmockito.a'
     end
-    
+
     lib.subspec 'guava' do |guava|
       guava.dependency 'J2ObjC/lib/jre'
-      guava.libraries = 'guava'
+      guava.vendored_libraries = 'dist/#{lib.base_name}/lib#{guava.base_name}.a'
     end
   end
 end
