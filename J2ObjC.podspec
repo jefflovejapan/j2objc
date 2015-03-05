@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "J2ObjC"
-  s.version      = "0.9.6"
+  s.version      = "0.9.6.1"
   s.license      = { :type => 'Apache License, Version 2.0', :file => 'LICENSE' }
   s.summary      = "J2ObjC's JRE emulation library, emulates a subset of the Java runtime library."
   s.homepage     = "https://github.com/google/j2objc"
@@ -26,7 +26,7 @@ Pod::Spec.new do |s|
 
     lib.subspec 'jre' do |jre|
       jre.preserve_paths = 'dist'
-      jre.libraries = 'jre_emul', 'z'
+      jre.libraries = 'jre_emul', 'icucore', 'z'
       # jre.xcconfig = { 'OTHER_LDFLAGS' => '-force_load ${PODS_ROOT}/J2ObjC/dist/lib/libjre_emul.a' }
     end
 
