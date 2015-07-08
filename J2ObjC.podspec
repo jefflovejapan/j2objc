@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.summary      = "J2ObjC's JRE emulation library, emulates a subset of the Java runtime library."
   s.homepage     = "https://github.com/google/j2objc"
   s.author       = "Google Inc."
-  s.source       = { :git => "https://github.com/jefflovejapan/j2objc.git", :tag => 'pleaseWork' }
+  s.source       = { :git => "https://github.com/jefflovejapan/j2objc.git", :tag => s.version.to_s }
 
   s.ios.deployment_target = '5.0'
   s.osx.deployment_target = '10.7'
@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   s.header_mappings_dir = 'dist/include'
   s.public_header_files = 'dist/include/**/*.h'
   s.source_files = 'dist/include/**/*.{h,m}'
-  s.vendored_libraries = 'libguava.a', 'libj2objc_main.a', 'libjavax_inject.a', 'libjre_emul.a', 'libjsr305.a', 'libjunit.a', 'libprotobuf_runtime.a'
+  s.vendored_libraries = 'dist/lib/libguava.a', 'dist/lib/libj2objc_main.a', 'dist/lib/libjavax_inject.a', 'dist/lib/libjre_emul.a', 'dist/lib/libjsr305.a', 'dist/lib/libjunit.a', 'dist/lib/libprotobuf_runtime.a', 
   s.prepare_command = <<-CMD
     scripts/download_distribution.sh
   CMD
