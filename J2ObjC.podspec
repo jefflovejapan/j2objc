@@ -14,7 +14,6 @@ Pod::Spec.new do |s|
 
   # Top level attributes can't be specified by subspecs.
   s.header_mappings_dir = 'dist/include'
-  s.public_header_files = 'dist/include/**/*.h'
   s.source_files = 'dist/include/**/*.{h,m}'
   s.vendored_libraries = 'dist/lib/libguava.a', 'dist/lib/libj2objc_main.a', 'dist/lib/libjavax_inject.a', 'dist/lib/libjre_emul.a', 'dist/lib/libjsr305.a', 'dist/lib/libjunit.a', 'dist/lib/libprotobuf_runtime.a', 
   s.prepare_command = <<-CMD
