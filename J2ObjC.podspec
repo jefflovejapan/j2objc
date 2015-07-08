@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.summary      = "J2ObjC's JRE emulation library, emulates a subset of the Java runtime library."
   s.homepage     = "https://github.com/google/j2objc"
   s.author       = "Google Inc."
-  s.source       = { :git => "https://github.com/goodow/j2objc.git", :tag => "v#{s.version}-lib" }
+  s.source       = { :git => "https://github.com/jefflovejapan/j2objc.git", :tag => "v#{s.version}-lib" }
 
   s.ios.deployment_target = '5.0'
   s.osx.deployment_target = '10.7'
@@ -14,6 +14,7 @@ Pod::Spec.new do |s|
 
   # Top level attributes can't be specified by subspecs.
   s.header_mappings_dir = 'dist/include'
+  s.public_header_files = 'dist/include/**/*.h'
   s.prepare_command = <<-CMD
     scripts/download_distribution.sh
   CMD
@@ -26,6 +27,7 @@ Pod::Spec.new do |s|
 
     lib.subspec 'jre' do |jre|
       jre.preserve_paths = 'dist'
+      jre.source_files = 'dist/include/**/*.{h,m}'
       jre.libraries = 'jre_emul', 'icucore', 'z'
       # jre.xcconfig = { 'OTHER_LDFLAGS' => '-force_load ${PODS_ROOT}/J2ObjC/dist/lib/libjre_emul.a' }
     end
