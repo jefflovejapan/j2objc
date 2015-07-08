@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   s.header_mappings_dir = 'dist/include'
   s.public_header_files = 'dist/include/**/*.h'
   s.source_files = 'dist/include/**/*.{h,m}'
-  s.vendored_libraries = 'libguava.a', 'libj2objc_main.a', 'libjavax_inject.a', 'libjre_emul.a', 'libjsr305.a', 'libjunit.a', 'libprotobuf_runtime.a'“
+  s.vendored_libraries = 'libguava.a', 'libj2objc_main.a', 'libjavax_inject.a', 'libjre_emul.a', 'libjsr305.a', 'libjunit.a', 'libprotobuf_runtime.a'
   s.prepare_command = <<-CMD
     scripts/download_distribution.sh
   CMD
