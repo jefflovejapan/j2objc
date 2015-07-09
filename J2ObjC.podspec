@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   # Top level attributes can't be specified by subspecs.
   s.header_mappings_dir = 'dist/include'
   s.source_files = 'dist/include/**/*.{h,m}'
-  s.vendored_libraries = 'dist/lib/libguava.a', 'dist/lib/libj2objc_main.a', 'dist/lib/libjavax_inject.a', 'dist/lib/libjre_emul.a', 'dist/lib/libjsr305.a', 'dist/lib/libjunit.a', 'dist/lib/libprotobuf_runtime.a', 
+  s.vendored_libraries = 'dist/lib/libj2objc_main.a', 'dist/lib/libjre_emul.a'
   s.prepare_command = <<-CMD
     scripts/download_distribution.sh
   CMD
@@ -28,20 +28,6 @@ Pod::Spec.new do |s|
       jre.preserve_paths = 'dist'
       jre.libraries = 'jre_emul', 'icucore', 'z'
     end
-
-    lib.subspec 'jsr305' do |jsr305|
-      jsr305.dependency 'J2ObjC/lib/jre'
-      jsr305.libraries = 'jsr305'
-    end
-
-    lib.subspec 'junit' do |junit|
-      junit.dependency 'J2ObjC/lib/jre'
-      junit.libraries = 'j2objc_main', 'junit', 'mockito'
-    end
     
-    lib.subspec 'guava' do |guava|
-      guava.dependency 'J2ObjC/lib/jre'
-      guava.libraries = 'guava'
-    end
   end
 end
