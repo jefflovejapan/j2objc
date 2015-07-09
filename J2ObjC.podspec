@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
   s.osx.deployment_target = '10.7'
   s.requires_arc = false
   s.default_subspec = 'lib/jre'
-  s.preserve_paths = 'dist/lib'
+  s.preserve_paths = 'dist/lib/**/*'
 
   # Top level attributes can't be specified by subspecs.
   s.header_mappings_dir = 'dist/include'
