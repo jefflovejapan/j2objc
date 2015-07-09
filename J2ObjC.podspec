@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '5.0'
   s.osx.deployment_target = '10.7'
   s.requires_arc = false
-  # s.default_subspec = 'lib/jre'
+  s.default_subspec = 'lib/jre'
 
   # Top level attributes can't be specified by subspecs.
   s.header_mappings_dir = 'dist/include'
@@ -20,28 +20,28 @@ Pod::Spec.new do |s|
     scripts/download_distribution.sh
   CMD
   
-  # s.subspec 'lib' do |lib|
-  #   lib.frameworks = 'Security'
-  #   lib.osx.frameworks = 'ExceptionHandling'
+  s.subspec 'lib' do |lib|
+    lib.frameworks = 'Security'
+    lib.osx.frameworks = 'ExceptionHandling'
 
-  #   lib.subspec 'jre' do |jre|
-  #     jre.preserve_paths = 'dist'
-  #     jre.libraries = 'jre_emul', 'icucore', 'z'
-  #   end
+    lib.subspec 'jre' do |jre|
+      jre.preserve_paths = 'dist'
+      jre.libraries = 'jre_emul', 'icucore', 'z'
+    end
 
-  #   lib.subspec 'jsr305' do |jsr305|
-  #     jsr305.dependency 'J2ObjC/lib/jre'
-  #     jsr305.libraries = 'jsr305'
-  #   end
+    lib.subspec 'jsr305' do |jsr305|
+      jsr305.dependency 'J2ObjC/lib/jre'
+      jsr305.libraries = 'jsr305'
+    end
 
-  #   lib.subspec 'junit' do |junit|
-  #     junit.dependency 'J2ObjC/lib/jre'
-  #     junit.libraries = 'j2objc_main', 'junit', 'mockito'
-  #   end
+    lib.subspec 'junit' do |junit|
+      junit.dependency 'J2ObjC/lib/jre'
+      junit.libraries = 'j2objc_main', 'junit', 'mockito'
+    end
     
-  #   lib.subspec 'guava' do |guava|
-  #     guava.dependency 'J2ObjC/lib/jre'
-  #     guava.libraries = 'guava'
-  #   end
-  # end
+    lib.subspec 'guava' do |guava|
+      guava.dependency 'J2ObjC/lib/jre'
+      guava.libraries = 'guava'
+    end
+  end
 end
