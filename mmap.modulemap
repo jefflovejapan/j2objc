@@ -1,6 +1,0 @@
-framework module J2ObjC {
-  umbrella header "J2ObjC.h"
-
-  export *
-  module * { export * }
-}
